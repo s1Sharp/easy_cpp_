@@ -1,0 +1,50 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build C++ project",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Build CMake",
+            ],
+            "command": "cd ./build && make"
+        },
+        {
+            "label": "Run C++ project",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Build C++ project",
+            ],
+            "command": "cd ./build && clear && ./main"
+        },
+        {
+            "label": "Build CMake",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Make build dir",
+            ],
+            "command": "cd ./build && cmake build .. -DCMAKE_BUILD_TYPE=Debug"
+        },
+        {
+            "label": "Make build dir",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "mkdir -p ./build"
+        }
+    ]
+}
